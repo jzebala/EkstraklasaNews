@@ -1,23 +1,27 @@
 <?php
 /**
- * Show array in pretty form.
+ * Build Keywords to search news about clubs
  * 
- * @param array $array
+ * @param array 
  * @return string 
  */
 function buildKeywords($array): string {
 
-    $query = null;
+    $keywords = null;
 
-    foreach($array as $value) {
-        if ( next($array) ) {
-            $query = $query . "(" . $value . ") OR ";
-        } else {
-            $query = $query . "(" . $value . ")";
+    foreach ( $array as $key => $value ) {
+
+        foreach ( $value as $key_2 => $value_2 ) {
+            
+            if ( next($value) ) {
+                $keywords = $keywords . "(" . $value_2 . ") OR ";
+            } else {
+                $keywords = $keywords . "(" . $value_2 . ")";
+            }
+            
         }
     }
 
-    return $query;
-    
+    return $keywords;
 }
 ?>
