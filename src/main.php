@@ -1,11 +1,13 @@
 <?php
+include('buildKeywords.php');
+
 $config = include('../config.php');
 
 // URL to NewsApi
 $url = $config['url'];
 
 // API key (newsapi.org)
-$key = $confg['key'];
+$key = $config['key'];
 
 // Endpoints: top-headlines, everything, sources.
 
@@ -31,8 +33,14 @@ switch($endpoint) {
     break;
 }
 
+// Get data from json file
+$json_data = file_get_contents('pko_ekstraklasa.json');
+
+// json to array
+$ekstraklasa = json_decode($json_data, true);
+
 $parameters_GET = [
-    'q' => build_query($pko_ekstraklasa_teams),
+    'q' => buildKeywords($ekstraklasa), // build keywords query
     'from' => date('Y-m-d', strtotime("-5 days", time())), //previous 5 days
     'to' => date('Y-m-d'), // today
     'sortBy' => 'publishedAt',
