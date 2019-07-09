@@ -1,0 +1,25 @@
+{
+    "teams": [
+        "Arka Gdynia",
+        "Cracovia",
+        "Górnik Zabrze",
+        "Jagiellonia Białystok",
+        "KGHM Zagłębie Lubin",
+        "Korona Kielce",
+        "Lech Poznań",
+        "Lechia Gdańsk",
+        "Legia Warszawa",
+        "ŁKS Łódź",
+        "Piast Gliwice",
+        "Pogoń Szczecin",
+        "Raków Częstochowa",
+        "Śląsk Wrocław",
+        "Wisła Kraków",
+        "Wisła Płock"
+    ],
+    "others": [
+        "PKO Ekstraklasa",
+        "Ekstraklasa",
+        "Puchar Polski"
+    ]
+}
