@@ -48,4 +48,28 @@ $parameters_GET = [
     'pageSize' => 100, // max 100 news
     'apiKey' => $key
 ];
+
+$http_query = http_build_query($parameters_GET);
+
+$url .= '?' . $http_query;
+
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$output = curl_exec($ch);
+
+curl_close($ch);
+
+$results = json_decode($output, true);
+
+if ( $results['status'] === 'ok' ) {
+    // Success
+    print_r($results['articles']);
+} else {
+    // Error
+    print_r($results);
+}
+
 ?>
