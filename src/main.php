@@ -34,7 +34,7 @@ switch($endpoint) {
 }
 
 // Get data from json file
-$json_data = file_get_contents('pko_ekstraklasa.json');
+$json_data = file_get_contents('../src/pko_ekstraklasa.json');
 
 // json to array
 $ekstraklasa = json_decode($json_data, true);
@@ -45,7 +45,7 @@ $parameters_GET = [
     'to' => date('Y-m-d'), // today
     'sortBy' => 'publishedAt',
     'language' => 'pl',
-    'pageSize' => 100, // max 100 news
+    'pageSize' => 15, // max 100 news
     'apiKey' => $key
 ];
 
@@ -63,7 +63,7 @@ $output = curl_exec($ch);
 curl_close($ch);
 
 $results = json_decode($output, true);
-
+/*
 if ( $results['status'] === 'ok' ) {
     // Success
     print_r($results['articles']);
@@ -71,5 +71,5 @@ if ( $results['status'] === 'ok' ) {
     // Error
     print_r($results);
 }
-
+*/
 ?>
