@@ -20,67 +20,48 @@ if ( $results['status'] === 'ok' ) {
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
         <title>EkstraklasaNews</title>
     </head>
 <body>
-    
-    <div class="container-fluid">
-        <h1>Ekstraklasa News</h1>
-        <hr>
+    <div class="container">
         <div class="row">
-        <?php
-        $loop = 1;
-        foreach ($results['articles'] as $article) {
-        ?>
-        
-            <div class="col-sm-4">
-                <div style="margin-bottom: 25px;" class="card">
+            <div class="col-md-8 offset-md-2">
+            <h1>Ekstraklasa News</h1>
+            <p class="text-muted text-center" style="font-size: 13px;"><?php echo implode(", ", $ekstraklasa['teams']); ?></p>
+            <hr>
+            <?php
+            $loop = 0;
+            foreach ($results['articles'] as $article) {
+                $loop++;
+            ?>
+                <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $loop . " | " . $article['title'] ?></h5>
+                        <h5 class="card-title" style="padding-bottom: 10px;"><?php echo $article['title'] ?></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><?php echo $article['source']['name'] ?> &nbsp; 
+                        <?php
+                            if (date("d-m-Y", strtotime($article['publishedAt'])) === date("d-m-Y")) {
+                                // Today
+                                echo "<span class='badge badge badge-info'>" . date("d-m-Y", strtotime($article['publishedAt'])) . "</span>";
+                            } 
+                            else 
+                            {
+                                // Not today
+                                echo "<span class='badge badge badge-warning'>" . date("d-m-Y", strtotime($article['publishedAt'])) . "</span>";
+                            }
+                        ?>
+                        </h6>
                         <p class="card-text"><?php echo $article['description'] ?></p>
-                        <a href="<?php echo $article['url'] ?>" class="btn btn-primary">Czytaj artykuł</a>
+                        <hr>
+                        <a href="<?php echo $article['url'] ?>" class="card-link">Przejdź do artykułu</a>
                     </div>
-                </div>
-            </div>
-        <?php
-            $loop++;
-        }
-        ?>
-        </div>
-        <!--
-        <div class="row">
-<div class="col-sm-4">
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Czytaj artykuł</a>
-        </div>
-    </div>
-</div>
-
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-</div>
--->
-    </div>
+                </div> <!-- ./ card -->
+                <br>
+            <?php
+            }
+            ?>
+            </div> <!-- ./ col -->
+        <div> <!-- ./ row -->
+    </div> <!-- ./ container -->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

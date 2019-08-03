@@ -45,7 +45,7 @@ $parameters_GET = [
     'to' => date('Y-m-d'), // today
     'sortBy' => 'publishedAt',
     'language' => 'pl',
-    'pageSize' => 15, // max 100 news
+    'pageSize' => 100, // max 100 news
     'apiKey' => $key
 ];
 
